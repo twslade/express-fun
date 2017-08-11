@@ -1,0 +1,16 @@
+extends layout
+
+
+block content
+  .inner
+    form(action="/account" method="POST")
+        h2 Account Edit
+        label(form="name") Name
+        input(type="text" name="name" value=user.name)
+
+        label(form="email") Email Address
+        input(type="email" name="email" value=user.email)
+
+        input.button(type="submit" value="Register")
+
+
