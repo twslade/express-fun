@@ -19,6 +19,8 @@ const userSchema = new mongoose.Schema({
         required: 'Please enter a name',
         trim: true,
     },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
 });
 
 //Add dynamic field
