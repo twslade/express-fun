@@ -11,7 +11,7 @@ function autocomplete(input, lat, lng) {
 
   input.on('keydown', (e) => {
     if(e.keyCode == 13) e.preventDefault();
-  })
+  });
 
 }
 
