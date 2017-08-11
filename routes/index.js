@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const storeController = require('../controllers/storeController');
-
+const userController = require('../controllers/userController');
+const authController = require('../controllers/authController');
 
 const { catchErrors } = require('../handlers/errorHandlers');
 
@@ -23,7 +24,21 @@ router.post('/add/:id',
 router.get('/store/:slug/', catchErrors(storeController.viewStore));
 router.get('/store/:id/edit/', catchErrors(storeController.editStore));
 
-router.get('/tags', catchErrors(storeController.getStoresByTag))
-router.get('/tags/:tag', catchErrors(storeController.getStoresByTag))
+router.get('/tags', catchErrors(storeController.getStoresByTag));
+router.get('/tags/:tag', catchErrors(storeController.getStoresByTag));
+
+router.get('/login', userController.loginForm);
+router.get('/register', userController.registerForm);
+
+// 1.) Validate Data
+// 2.) Add user to db
+// 3.) Log them in
+router.post('/register',
+    userController.validateRegister,
+    userController.register,
+    authController.login,
+);
+
+router.get('/logout', authController.logout);
 
 module.exports = router;
